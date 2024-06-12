@@ -1,17 +1,19 @@
 import { Component, Input, input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
+import { NewTaskComponent } from "./new-task/new-task.component";
 
 @Component({
-  selector: 'app-tasks',
-  standalone: true,
-  templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.css',
-  imports: [TaskComponent],
+    selector: 'app-tasks',
+    standalone: true,
+    templateUrl: './tasks.component.html',
+    styleUrl: './tasks.component.css',
+    imports: [TaskComponent, NewTaskComponent]
 })
 export class TasksComponent {
   // name = input.required<string>(); // with signal input
-  @Input({required: true}) name!: string;
-  @Input({required: true}) id!: string;
+  @Input({ required: true }) name!: string;
+  @Input({ required: true }) id!: string;
+  isAddingTask = false;
   dummyTasks = [
     {
       id: 't1',
@@ -38,12 +40,18 @@ export class TasksComponent {
     },
   ];
 
-  get selectedUserTasks(){
-    return this.dummyTasks.filter( (task) => task.userId === this.id)
+  get selectedUserTasks() {
+    return this.dummyTasks.filter((task) => task.userId === this.id);
   }
 
-  onCompleteClick(id: string){
+  onCompleteClick(id: string) {
     console.log(id);
     this.dummyTasks = this.dummyTasks.filter((task) => task.id !== id);
+  }
+  onAddTask() {
+    this.isAddingTask = true;
+  }
+  onCancelAddTask(){
+    this.isAddingTask = false;
   }
 }
