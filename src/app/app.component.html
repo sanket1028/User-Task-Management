@@ -16,9 +16,9 @@
   </uL>
 
   @if(clickedUser){
-    <app-tasks [name]="clickedUser.name" />
+  <app-tasks [name]="clickedUser.name" [id]="clickedUser.id"/>
   } @else {
-    <p id="fallback">Select a user to see their tasks!</p>
+  <p id="fallback">Select a user to see their tasks!</p>
   }
 
   <!-- older way -->
@@ -26,6 +26,4 @@
   <ng-template #fallback>
     <p id="fallback">Select a user to see their tasks!</p>
   </ng-template> -->
-  
 </main>
-
